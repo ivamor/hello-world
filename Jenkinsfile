@@ -1,5 +1,5 @@
 pipeline {
-    agent agent1
+    agent { docker { agent1 } }
     stages {
         /* "Build" and "Test" stages omitted */
 
