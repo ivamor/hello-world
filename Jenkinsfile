@@ -1,12 +1,20 @@
 pipeline {
-  agent any
+  agent {
+    label '!windows'
+  }
+
+  environment {
+    DISABLE_AUTH = 'true'
+    DB_ENGINE    = 'sqlite'
+  }
+
   stages {
     stage('Build') {
-    	steps {    
-    		timeout(time: 3, unit: 'SECONDS') {
-    			sh './health-check.sh'
-    		}
-    	}
+      steps {
+        echo "Database engine is ${DB_ENGINE}"
+        echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+        sh 'printenv'
+      }
     }
-  }    
-} 
+  }
+}
