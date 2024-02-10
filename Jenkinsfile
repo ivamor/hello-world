@@ -2,11 +2,7 @@ pipeline {
   agent any
   stages {
     stage('Build') {
-    	steps {
-    		retry(3) {
-    			sh './flakey-deploy.sh'
-    		}
-    
+    	steps {    
     		timeout(time: 3, unit: 'SECONDS') {
     			sh './health-check.sh'
     		}
