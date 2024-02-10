@@ -1,15 +1,24 @@
 pipeline {
     agent any
     stages {
-        stage('Test') {
+        /* "Build" and "Test" stages omitted */
+
+        stage('Deploy - Staging') {
             steps {
-                sh './gradlew check'
+                sh 'ls'
             }
         }
-    }
-    post {
-        always {
-            junit 'build/reports/**/*.xml'
+
+        stage('Sanity check') {
+            steps {
+                input "Do you really want to check current directory as well?"
+            }
+        }
+
+        stage('Deploy - Production') {
+            steps {
+                sh 'pwd'
+            }
         }
     }
 }
