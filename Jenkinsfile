@@ -1,5 +1,5 @@
 pipeline {
-    agent { label { agent1 } }
+    agent { label 'agent1' }
     stages {
         /* "Build" and "Test" stages omitted */
 
